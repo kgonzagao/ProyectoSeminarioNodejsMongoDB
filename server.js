@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const bodyParse = require('body-parser')
+const response = require('./network/response')
 
 var app = express()
 app.use(bodyParse.json())
@@ -8,13 +9,15 @@ app.use(bodyParse.urlencoded({extended:false}))
 app.use(router)
 
 app.get('/carrera', function(req,res){
-    res.send('lista de carreras')
+    response.success(req,res,'Lista de Carreras de la UPS.',200)
 })
 
 app.post('/carrera',function(req,res){
-    console.log(req.body)
-    console.log(req.query)
-    res.status(201).send({tipo_error:0,mensaje_error:'',mensaje_exito:'exito añadio'})
+    if(req.query.error == 'ok'){
+        response.error(req,res,'Error al ingresar la Carrera.',500)
+    }else{
+        response.success(req,res,'Ingreso de Carrera exitoso',201)
+    }
 })
 
 app.use('/',express.static('public'))
