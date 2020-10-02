@@ -1,13 +1,19 @@
 const express = require('express')
-const router = require('./network/routes')
-const bodyParse = require('body-parser')
+const bodyParser = require('body-parser')
 const response = require('./network/response')
 
-var app = express()
-app.use(bodyParse.json())
-app.use(bodyParse.urlencoded({extended:false}))
-router(app)
+const config = require('./config')
+const db = require('./db')
+const router = require('./network/routes')
 
-app.use('/',express.static('public'))
-app.listen(5000)
-console.log('La aplicacion está escuchando en http://localhost:5000')
+db( config.dbUrl )
+
+var app = express()
+app.use( bodyParser.json() )
+app.use( bodyParser.urlencoded( {extended:false} ) )
+router( app )
+
+app.use( config.publicRoute, express.static('public') )
+
+app.listen( config.port )
+console.log( `La aplicación está escuchando en ${config.host}:${config.port}${config.publicRoute}` )

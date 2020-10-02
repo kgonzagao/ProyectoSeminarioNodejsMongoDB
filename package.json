@@ -1,20 +1,21 @@
 {
-  "name": "proyectokg",
+  "name": "utcae",
   "version": "1.0.0",
-  "description": "Proyecto Seminario ",
+  "description": "Sistema de Titulacion",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "server",
-    "node.js"
+    "utcae"
   ],
-  "author": "Kevin Gonzaga Orellana",
+  "author": "Kevin Gonzaga",
   "license": "GPL-3.0",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7",
+    "mongose": "0.0.2-security",
+    "multer": "^1.4.2"
   }
 }
